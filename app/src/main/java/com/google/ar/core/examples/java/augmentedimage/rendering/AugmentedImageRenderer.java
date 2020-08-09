@@ -32,8 +32,8 @@ public class AugmentedImageRenderer {
     0x009688, 0x4CAF50, 0x8BC34A, 0xCDDC39, 0xFFEB3B, 0xFFC107, 0xFF9800,
   };
 
-  private final ObjectRenderer imageFrameUpperLeft = new ObjectRenderer();
-  private final ObjectRenderer imageFrameUpperRight = new ObjectRenderer();
+  private final ObjectRenderer imageFrameObject = new ObjectRenderer();
+  private final ObjectRenderer imageFrameObject2 = new ObjectRenderer();
   private final ObjectRenderer imageFrameLowerLeft = new ObjectRenderer();
   private final ObjectRenderer imageFrameLowerRight = new ObjectRenderer();
 
@@ -41,15 +41,15 @@ public class AugmentedImageRenderer {
 
   public void createOnGlThread(Context context) throws IOException {
 
-    imageFrameUpperLeft.createOnGlThread(
+    imageFrameObject.createOnGlThread(
         context, "models/andy.obj", "models/andy.png");
-    imageFrameUpperLeft.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
-    imageFrameUpperLeft.setBlendMode(BlendMode.SourceAlpha);
+    imageFrameObject.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+    imageFrameObject.setBlendMode(BlendMode.SourceAlpha);
 
-//    imageFrameUpperRight.createOnGlThread(
-//        context, "models/frame_upper_right.obj", "models/frame_base.png");
-//    imageFrameUpperRight.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
-//    imageFrameUpperRight.setBlendMode(BlendMode.SourceAlpha);
+    imageFrameObject2.createOnGlThread(
+        context, "models/Hamburger.obj", "models/Hamburger_BaseColor.png");
+    imageFrameObject2.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+    imageFrameObject2.setBlendMode(BlendMode.SourceAlpha);
 //
 //    imageFrameLowerLeft.createOnGlThread(
 //        context, "models/frame_lower_left.obj", "models/frame_base.png");
@@ -100,8 +100,17 @@ public class AugmentedImageRenderer {
     float[] modelMatrix = new float[16];
 
     worldBoundaryPoses[0].toMatrix(modelMatrix, 0);
-    imageFrameUpperLeft.updateModelMatrix(modelMatrix, scaleFactor);
-    imageFrameUpperLeft.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+
+    int index = augmentedImage.getIndex();
+    if (index == 0) {
+      imageFrameObject.updateModelMatrix(modelMatrix, scaleFactor);
+      imageFrameObject.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+    }
+    else {
+      scaleFactor = 0.05f;
+      imageFrameObject2.updateModelMatrix(modelMatrix, scaleFactor);
+      imageFrameObject2.draw(viewMatrix, projectionMatrix, colorCorrectionRgba, tintColor);
+    }
 //
 //    worldBoundaryPoses[1].toMatrix(modelMatrix, 0);
 //    imageFrameUpperRight.updateModelMatrix(modelMatrix, scaleFactor);

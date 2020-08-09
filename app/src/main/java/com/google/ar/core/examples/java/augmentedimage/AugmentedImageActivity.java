@@ -223,6 +223,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
 
   @Override
   public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+    Log.i("Object created", "object created");
     GLES20.glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Prepare the rendering objects. This involves reading shaders, so may throw an IOException.
@@ -230,6 +231,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
       // Create the texture and pass it to ARCore session to be filled during update().
       backgroundRenderer.createOnGlThread(/*context=*/ this);
       augmentedImageRenderer.createOnGlThread(/*context=*/ this);
+      Log.i("renders made", "renders made");
     } catch (IOException e) {
       Log.e(TAG, "Failed to read an asset file", e);
     }
@@ -324,6 +326,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
 
           // Create a new anchor for newly found images.
           if (!augmentedImageMap.containsKey(augmentedImage.getIndex())) {
+            Log.i("Found valid index", "index" + augmentedImage.getIndex());
             Anchor centerPoseAnchor = augmentedImage.createAnchor(augmentedImage.getCenterPose());
             augmentedImageMap.put(
                 augmentedImage.getIndex(), Pair.create(augmentedImage, centerPoseAnchor));
