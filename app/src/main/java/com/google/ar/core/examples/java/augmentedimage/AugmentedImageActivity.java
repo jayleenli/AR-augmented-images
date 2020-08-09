@@ -331,6 +331,27 @@ public class AugmentedImageActivity extends AppCompatActivity implements GLSurfa
             augmentedImageMap.put(
                 augmentedImage.getIndex(), Pair.create(augmentedImage, centerPoseAnchor));
           }
+
+          //Check to see if there is a collision? Only two objects for now
+          if (augmentedImage.getIndex() == 0 && augmentedImageMap.size() == 2) {
+            int this_img_index = 0; //augmentedImage.getIndex();
+            Log.i("pose 0", augmentedImageMap.get(this_img_index).second.getPose().toString());
+            Log.i("pose 1", augmentedImageMap.get(1).second.getPose().toString());
+            //Log.i("pose", augmentedImageMap.get(this_img_index).second.getPose().getXAxis().toString());
+            float this_x = augmentedImageMap.get(this_img_index).second.getPose().tx();
+            float this_y = augmentedImageMap.get(this_img_index).second.getPose().ty();
+            float this_z = augmentedImageMap.get(this_img_index).second.getPose().tz();
+
+            float other_x = augmentedImageMap.get(1).second.getPose().tx();
+            float other_y = augmentedImageMap.get(1).second.getPose().ty();
+            float other_z = augmentedImageMap.get(1).second.getPose().tz();
+
+            if (other_x < this_x + .2 && other_x > this_x - .2 && other_y < this_y + .02 && other_y > this_y -.02) {
+              Log.i("collision", "collision");
+            }
+          }
+          //Log.i("pose", Float.toString(augmentedImageMap.get(this_img_index).second.getPose().tx()));
+          //Log.i("pose", augmentedImageMap.get(this_img_index).second.getPose().getXAxis().toString());
           break;
 
         case STOPPED:

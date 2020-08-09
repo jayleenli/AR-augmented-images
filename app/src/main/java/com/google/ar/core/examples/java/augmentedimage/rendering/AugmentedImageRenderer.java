@@ -43,12 +43,12 @@ public class AugmentedImageRenderer {
 
     imageFrameObject.createOnGlThread(
         context, "models/andy.obj", "models/andy.png");
-    imageFrameObject.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+    //imageFrameObject.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
     imageFrameObject.setBlendMode(BlendMode.SourceAlpha);
 
     imageFrameObject2.createOnGlThread(
         context, "models/Hamburger.obj", "models/Hamburger_BaseColor.png");
-    imageFrameObject2.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
+    //imageFrameObject2.setMaterialProperties(0.0f, 3.5f, 1.0f, 6.0f);
     imageFrameObject2.setBlendMode(BlendMode.SourceAlpha);
 //
 //    imageFrameLowerLeft.createOnGlThread(
