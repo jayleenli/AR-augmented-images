@@ -12,5 +12,5 @@ I want to expand on this further in a future hackathon as this hackathon was rea
 
 
 #### Lessons learned 
-Unity is kinda hard :'), but if definitely better for AR
+Unity is kinda hard :'), but if definitely better for AR  
 Finding an image that will work well for augmented images is hard, I guess ARCore really like pictures of the earth
